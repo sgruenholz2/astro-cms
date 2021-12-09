@@ -1,5 +1,15 @@
 {
     "tabWidth": 4,
     "insertPragma": true,
-    "proseWrap": "preserve"
+    "proseWrap": "preserve",
+    "overrides": [
+        {
+            "files": ["**/*.mdx"],
+            "options": {
+                "semi": false,
+                "insertPragma": false,
+                "proseWrap": "always"
+            }
+        }
+    ]
 }
