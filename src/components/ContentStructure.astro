@@ -1,0 +1,25 @@
+---
+import Debug from "astro/debug";
+import ContentBlock from "./ContentBlock.astro";
+const {contentBlockIds, contentBlocks} = Astro.props;
+
+// How do we reference a component from itself recursively?
+const Self = this.__render;
+---
+<>
+    {contentBlockIds.map(id => {
+        const {childContentBlockIds, ...props} = contentBlocks[id];
+        return (
+            <ContentBlock {...props}>
+                Child blocks go here if they exist, using another
+                ContentStructure component.
+                {props.content ? (
+                    <Self
+                        contentBlockIds={childContentBlockIds}
+                        contentBlocks={contentBlocks}
+                    />
+                ) : ""}
+            </ContentBlock>
+        );
+    })}
+</>

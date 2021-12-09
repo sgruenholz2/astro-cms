@@ -1,0 +1,33 @@
+---
+import { getPages, getPageBySlug } from '../lib/api';
+
+export async function getStaticPaths() {
+    const pages = await getPages();
+    console.log("pages", pages);
+    return pages.map(slug => {
+        return {
+            params: { slug }
+        };
+    });
+}
+
+import ContentStructure from '../components/ContentStructure.astro';
+const { slug } = Astro.request.params;
+console.log("slug", slug);
+
+const { head, contentBlockIds, contentBlocks } = await getPageBySlug(slug);
+---
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>{head.title}</title>
+        <meta name="viewport" content="width=device-width" />
+    </head>
+    <body>
+        <h1>Demo Page</h1>
+        <ContentStructure
+            contentBlockIds={contentBlockIds}
+            contentBlocks={contentBlocks}
+        />
+    </body>
+</html>

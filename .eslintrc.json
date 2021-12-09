@@ -1,0 +1,10 @@
+{
+    "extends": ["astro", "prettier"],
+    "env": {
+        "browser": true,
+        "node": true,
+        "commonjs": true,
+        "es6": true
+    },
+    "plugins": ["astro"]
+}
