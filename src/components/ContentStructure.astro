@@ -13,7 +13,7 @@ const Self = this.__render;
             <ContentBlock {...props}>
                 Child blocks go here if they exist, using another
                 ContentStructure component.
-                {props.content ? (
+                {childContentBlockIds && childContentBlockIds.length ? (
                     <Self
                         contentBlockIds={childContentBlockIds}
                         contentBlocks={contentBlocks}
